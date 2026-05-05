@@ -24,14 +24,13 @@ RUN composer install --no-dev --optimize-autoloader
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
 # 7. ضبط الـ Apache ليقرأ من مجلد public
-ENV APACHE_DOCUMENT_ROOT /var/www/html/public
+ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
-# 8. تفعيل الـ Rewrite Module وحل مشكلة الـ MPM (التعديل هنا)
-RUN a2enmod rewrite
-RUN a2dismod mpm_event || true
-RUN a2enmod mpm_prefork
+# 8. تفعيل الـ Rewrite Module وحل مشكلة الـ MPM
+RUN a2dismod mpm_event mpm_worker mpm_prefork || true \
+    && a2enmod mpm_prefork rewrite
 
 # 9. تشغيل الأباتشي
 CMD ["apache2-foreground"]
