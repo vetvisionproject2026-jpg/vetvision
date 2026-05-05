@@ -28,11 +28,10 @@ ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf \
     && sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
-# 8. حل مشكلة MPM
-RUN grep -r mpm /etc/apache2/mods-enabled/ || true \
-    && rm -f /etc/apache2/mods-enabled/mpm_* \
-    && ln -s /etc/apache2/mods-available/mpm_prefork.load /etc/apache2/mods-enabled/ \
-    && ln -s /etc/apache2/mods-available/mpm_prefork.conf /etc/apache2/mods-enabled/ \
+# 8. حل مشكلة MPM بشكل صحيح
+# نقوم بتعطيل أي MPM مفعل حالياً وتفعيل mpm_prefork الذي يفضله PHP عادة
+RUN a2dismod mpm_event mpm_worker || true \
+    && a2enmod mpm_prefork \
     && a2enmod rewrite
 
 # 9. تشغيل الأباتشي
