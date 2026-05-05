@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install -y \
     libonig-dev \
     libxml2-dev \
     zip \
-    unzip
+    unzip && rm -rf /var/lib/apt/lists/*
 
 # 2. تثبيت إضافات PHP
 RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
@@ -23,14 +23,17 @@ RUN composer install --no-dev --optimize-autoloader
 # 6. إعطاء الصلاحيات
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
-# 7. ضبط الـ Apache ليقرأ من مجلد public
+# 7. ضبط الـ Apache
 ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
-RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
-RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf \
+    && sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
-# 8. تفعيل الـ Rewrite Module وحل مشكلة الـ MPM
-RUN a2dismod mpm_event mpm_worker mpm_prefork || true \
-    && a2enmod mpm_prefork rewrite
+# 8. حل مشكلة MPM
+RUN grep -r mpm /etc/apache2/mods-enabled/ || true \
+    && rm -f /etc/apache2/mods-enabled/mpm_* \
+    && ln -s /etc/apache2/mods-available/mpm_prefork.load /etc/apache2/mods-enabled/ \
+    && ln -s /etc/apache2/mods-available/mpm_prefork.conf /etc/apache2/mods-enabled/ \
+    && a2enmod rewrite
 
 # 9. تشغيل الأباتشي
 CMD ["apache2-foreground"]
