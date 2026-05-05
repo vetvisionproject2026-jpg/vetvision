@@ -1,0 +1,2342 @@
+openapi: 3.0.3
+info:
+  title: 'Laravel API Documentation'
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'https://meningeal-heterogeneously-shalanda.ngrok-free.dev'
+tags:
+  -
+    name: Endpoints
+    description: ''
+paths:
+  /api/documentation:
+    get:
+      summary: 'Handles the API request and renders the Swagger documentation view.'
+      operationId: handlesTheAPIRequestAndRendersTheSwaggerDocumentationView
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <title>L5 Swagger UI</title>\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"https://meningeal-heterogeneously-shalanda.ngrok-free.dev/docs/asset/swagger-ui.css?v=1d5a7f836f627d06d0454f607d04a58e\">\n    <link rel=\"icon\" type=\"image/png\" href=\"https://meningeal-heterogeneously-shalanda.ngrok-free.dev/docs/asset/favicon-32x32.png?v=40d4f2c38d1cd854ad463f16373cbcb6\" sizes=\"32x32\"/>\n    <link rel=\"icon\" type=\"image/png\" href=\"https://meningeal-heterogeneously-shalanda.ngrok-free.dev/docs/asset/favicon-16x16.png?v=f0ae831196d55d8f4115b6c5e8ec5384\" sizes=\"16x16\"/>\n    <style>\n    html\n    {\n        box-sizing: border-box;\n        overflow: -moz-scrollbars-vertical;\n        overflow-y: scroll;\n    }\n    *,\n    *:before,\n    *:after\n    {\n        box-sizing: inherit;\n    }\n\n    body {\n      margin:0;\n      background: #fafafa;\n    }\n    </style>\n    </head>\n\n<body >\n<div id=\"swagger-ui\"></div>\n\n<script src=\"https://meningeal-heterogeneously-shalanda.ngrok-free.dev/docs/asset/swagger-ui-bundle.js?v=f2d6bf5b0cd23e232a34ea8e64769934\"></script>\n<script src=\"https://meningeal-heterogeneously-shalanda.ngrok-free.dev/docs/asset/swagger-ui-standalone-preset.js?v=7289ecfaa5507c519cb95606e6216dbb\"></script>\n<script>\n    window.onload = function() {\n        const urls = [];\n\n                    urls.push({name: \"L5 Swagger UI\", url: \"https://meningeal-heterogeneously-shalanda.ngrok-free.dev/docs?api-docs.json\"});\n        \n        // Build a system\n        const ui = SwaggerUIBundle({\n            dom_id: '#swagger-ui',\n            urls: urls,\n            \"urls.primaryName\": \"L5 Swagger UI\",\n            operationsSorter: null,\n            configUrl: null,\n            validatorUrl: null,\n            oauth2RedirectUrl: \"https://meningeal-heterogeneously-shalanda.ngrok-free.dev/api/oauth2-callback\",\n\n            requestInterceptor: function(request) {\n                request.headers['X-CSRF-TOKEN'] = '';\n                return request;\n            },\n\n            presets: [\n                SwaggerUIBundle.presets.apis,\n                SwaggerUIStandalonePreset\n            ],\n\n            plugins: [\n                SwaggerUIBundle.plugins.DownloadUrl\n            ],\n\n            layout: \"StandaloneLayout\",\n            docExpansion : \"none\",\n            deepLinking: true,\n            filter: true,\n            persistAuthorization: \"false\",\n\n        })\n\n        window.ui = ui\n\n            }\n</script>\n</body>\n</html>\n"
+      tags:
+        - Endpoints
+      security: []
+  /api/oauth2-callback:
+    get:
+      summary: 'Handles the OAuth2 callback and retrieves the required file for the redirect.'
+      operationId: handlesTheOAuth2CallbackAndRetrievesTheRequiredFileForTheRedirect
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "<!doctype html>\n<html lang=\"en-US\">\n<body>\n<script src=\"oauth2-redirect.js\"></script>\n</body>\n</html>\n"
+      tags:
+        - Endpoints
+      security: []
+  /api/register:
+    post:
+      summary: ''
+      operationId: postApiRegister
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: vmqeopfuudtdsufvyvddq
+                email:
+                  type: string
+                  description: 'Must be a valid email address.'
+                  example: kunde.eloisa@example.com
+                password:
+                  type: string
+                  description: 'Must be at least 8 characters.'
+                  example: '4[*UyPJ"}6'
+                role:
+                  type: string
+                  description: ''
+                  example: user
+                  enum:
+                    - user
+                    - doctor
+              required:
+                - name
+                - email
+                - password
+                - role
+      security: []
+  /api/verify-email:
+    post:
+      summary: ''
+      operationId: postApiVerifyEmail
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: 'Must be a valid email address. The <code>email</code> of an existing record in the users table.'
+                  example: qkunze@example.com
+                code:
+                  type: string
+                  description: 'Must be at least 6 characters. Must not be greater than 6 characters.'
+                  example: opfuu
+              required:
+                - email
+                - code
+      security: []
+  /api/login:
+    post:
+      summary: ''
+      operationId: postApiLogin
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: 'Must be a valid email address.'
+                  example: qkunze@example.com
+                password:
+                  type: string
+                  description: ''
+                  example: consequatur
+              required:
+                - email
+                - password
+      security: []
+  /api/forgot-password:
+    post:
+      summary: ''
+      operationId: postApiForgotPassword
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: 'Must be a valid email address. The <code>email</code> of an existing record in the users table.'
+                  example: qkunze@example.com
+              required:
+                - email
+      security: []
+  /api/reset-password:
+    post:
+      summary: ''
+      operationId: postApiResetPassword
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: 'Must be a valid email address. The <code>email</code> of an existing record in the users table.'
+                  example: qkunze@example.com
+                code:
+                  type: string
+                  description: 'Must be at least 6 characters. Must not be greater than 6 characters.'
+                  example: opfuu
+                password:
+                  type: string
+                  description: 'Must be at least 8 characters.'
+                  example: 'e/dl4m{o'
+              required:
+                - email
+                - code
+                - password
+      security: []
+  '/api/auth/{provider}/redirect':
+    get:
+      summary: "الخطوة 1: نبعت المستخدم لصفحة Google أو Facebook عشان يسجل دخول\nURL مثلاً: GET /api/auth/google/redirect"
+      operationId: 1GoogleFacebookURLGETapiauthgoogleredirect
+      description: ''
+      parameters: []
+      responses:
+        400:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: false
+                  message: 'مزود الخدمة غير مدعوم'
+                  data: null
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'مزود الخدمة غير مدعوم'
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: provider
+        description: ''
+        example: consequatur
+        required: true
+        schema:
+          type: string
+  '/api/auth/{provider}/callback':
+    get:
+      summary: ''
+      operationId: getApiAuthProviderCallback
+      description: ''
+      parameters: []
+      responses:
+        400:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: false
+                  message: 'مزود الخدمة غير مدعوم'
+                  data: null
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'مزود الخدمة غير مدعوم'
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: provider
+        description: ''
+        example: consequatur
+        required: true
+        schema:
+          type: string
+  '/api/get-token/{doctorId}':
+    get:
+      summary: ''
+      operationId: getApiGetTokenDoctorId
+      description: ''
+      parameters: []
+      responses:
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Doctor ID not found in doctors table'
+                properties:
+                  message:
+                    type: string
+                    example: 'Doctor ID not found in doctors table'
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: doctorId
+        description: ''
+        example: consequatur
+        required: true
+        schema:
+          type: string
+  '/api/get-user-token/{userId}':
+    get:
+      summary: ''
+      operationId: getApiGetUserTokenUserId
+      description: ''
+      parameters: []
+      responses:
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'User ID not found in users table'
+                properties:
+                  message:
+                    type: string
+                    example: 'User ID not found in users table'
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: userId
+        description: ''
+        example: consequatur
+        required: true
+        schema:
+          type: string
+  /api/payments/callback:
+    post:
+      summary: ''
+      operationId: postApiPaymentsCallback
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/update-profile:
+    post:
+      summary: ''
+      operationId: postApiUpdateProfile
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: false
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: vmqeopfuudtdsufvyvddq
+                email:
+                  type: string
+                  description: ''
+                  example: null
+                password:
+                  type: string
+                  description: 'Must be at least 8 characters.'
+                  example: OP>@;4
+                old_password:
+                  type: string
+                  description: 'This field is required when <code>password</code> is present.'
+                  example: null
+                avatar:
+                  type: string
+                  format: binary
+                  description: 'Must be an image. Must not be greater than 2048 kilobytes.'
+                  nullable: true
+      security: []
+  /api/logout:
+    post:
+      summary: ''
+      operationId: postApiLogout
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/notifications:
+    get:
+      summary: ''
+      operationId: getApiNotifications
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: false
+                  message: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data: null
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+      tags:
+        - Endpoints
+      security: []
+  /api/notifications/unread:
+    get:
+      summary: ''
+      operationId: getApiNotificationsUnread
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: false
+                  message: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data: null
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+      tags:
+        - Endpoints
+      security: []
+  /api/notifications/badge:
+    get:
+      summary: ''
+      operationId: getApiNotificationsBadge
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: false
+                  message: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data: null
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+      tags:
+        - Endpoints
+      security: []
+  /api/notifications/read-all:
+    put:
+      summary: ''
+      operationId: putApiNotificationsReadAll
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  '/api/notifications/{id}/read':
+    put:
+      summary: ''
+      operationId: putApiNotificationsIdRead
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the notification.'
+        example: consequatur
+        required: true
+        schema:
+          type: string
+  '/api/notifications/{id}':
+    delete:
+      summary: ''
+      operationId: deleteApiNotificationsId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the notification.'
+        example: consequatur
+        required: true
+        schema:
+          type: string
+  /api/appointments/check-availability:
+    post:
+      summary: ''
+      operationId: postApiAppointmentsCheckAvailability
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                doctor_id:
+                  type: string
+                  description: 'The <code>id</code> of an existing record in the doctors table.'
+                  example: consequatur
+                date_time:
+                  type: string
+                  description: 'Must be a valid date in the format <code>Y-m-d H:i</code>. Must be a date after <code>now</code>.'
+                  example: '2107-04-26'
+              required:
+                - doctor_id
+                - date_time
+      security: []
+  '/api/appointments/{id}':
+    get:
+      summary: ''
+      operationId: getApiAppointmentsId
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: false
+                  message: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data: null
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the appointment.'
+        example: consequatur
+        required: true
+        schema:
+          type: string
+  '/api/doctors/{doctorId}/available-slots':
+    get:
+      summary: ''
+      operationId: getApiDoctorsDoctorIdAvailableSlots
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: false
+                  message: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data: null
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: doctorId
+        description: ''
+        example: 3
+        required: true
+        schema:
+          type: integer
+  '/api/doctors/{doctorId}/availability-calendar':
+    get:
+      summary: ''
+      operationId: getApiDoctorsDoctorIdAvailabilityCalendar
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: false
+                  message: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data: null
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: doctorId
+        description: ''
+        example: 3
+        required: true
+        schema:
+          type: integer
+  '/api/doctors/{id}/reviews':
+    get:
+      summary: ''
+      operationId: getApiDoctorsIdReviews
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: false
+                  message: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data: null
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the doctor.'
+        example: 3
+        required: true
+        schema:
+          type: integer
+  /api/doctors/nearest:
+    get:
+      summary: ''
+      operationId: getApiDoctorsNearest
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: false
+                  message: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data: null
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                lat:
+                  type: number
+                  description: 'Must be between -90 and 90.'
+                  example: -89
+                lng:
+                  type: number
+                  description: 'Must be between -180 and 180.'
+                  example: -180
+                limit:
+                  type: integer
+                  description: 'Must be at least 1. Must not be greater than 50.'
+                  example: 16
+              required:
+                - lat
+      security: []
+  /api/doctors/nearby:
+    get:
+      summary: ''
+      operationId: getApiDoctorsNearby
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: false
+                  message: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data: null
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                lat:
+                  type: number
+                  description: 'Must be between -90 and 90.'
+                  example: -89
+                lng:
+                  type: number
+                  description: 'Must be between -180 and 180.'
+                  example: -180
+                distance:
+                  type: integer
+                  description: 'Must be at least 1. Must not be greater than 100.'
+                  example: 16
+              required:
+                - lat
+                - lng
+      security: []
+  /api/doctors:
+    get:
+      summary: ''
+      operationId: getApiDoctors
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: false
+                  message: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data: null
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+      tags:
+        - Endpoints
+      security: []
+  '/api/doctors/{id}':
+    get:
+      summary: ''
+      operationId: getApiDoctorsId
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: false
+                  message: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data: null
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the doctor.'
+        example: 3
+        required: true
+        schema:
+          type: integer
+  '/api/chat/start/{doctor_id}':
+    post:
+      summary: ''
+      operationId: postApiChatStartDoctor_id
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: doctor_id
+        description: 'The ID of the doctor.'
+        example: consequatur
+        required: true
+        schema:
+          type: string
+  '/api/chat/{sessionId}/send':
+    post:
+      summary: ''
+      operationId: postApiChatSessionIdSend
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  description: 'Must not be greater than 1000 characters.'
+                  example: vmqeopfuudtdsufvyvddq
+              required:
+                - message
+      security: []
+    parameters:
+      -
+        in: path
+        name: sessionId
+        description: ''
+        example: consequatur
+        required: true
+        schema:
+          type: string
+  '/api/chat/{sessionId}/messages':
+    get:
+      summary: ''
+      operationId: getApiChatSessionIdMessages
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: false
+                  message: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data: null
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: sessionId
+        description: ''
+        example: consequatur
+        required: true
+        schema:
+          type: string
+  /api/chat/sessions:
+    get:
+      summary: ''
+      operationId: getApiChatSessions
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: false
+                  message: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data: null
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+      tags:
+        - Endpoints
+      security: []
+  '/api/payments/{appointmentId}/pay':
+    post:
+      summary: ''
+      operationId: postApiPaymentsAppointmentIdPay
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: appointmentId
+        description: ''
+        example: consequatur
+        required: true
+        schema:
+          type: string
+  '/api/payments/{appointmentId}/status':
+    get:
+      summary: ''
+      operationId: getApiPaymentsAppointmentIdStatus
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: false
+                  message: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data: null
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: appointmentId
+        description: ''
+        example: consequatur
+        required: true
+        schema:
+          type: string
+  /api/user/dashboard:
+    get:
+      summary: ''
+      operationId: getApiUserDashboard
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: false
+                  message: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data: null
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+      tags:
+        - Endpoints
+      security: []
+  /api/my-animals:
+    get:
+      summary: ''
+      operationId: getApiMyAnimals
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: false
+                  message: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data: null
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+      tags:
+        - Endpoints
+      security: []
+  /api/animals:
+    post:
+      summary: ''
+      operationId: postApiAnimals
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 50 characters.'
+                  example: vmqeopfuudtdsufvyvddq
+                species:
+                  type: string
+                  description: 'Must not be greater than 50 characters.'
+                  example: amniihfqcoynlazghdtqt
+                gender:
+                  type: string
+                  description: ''
+                  example: female
+                  enum:
+                    - male
+                    - female
+                image:
+                  type: string
+                  format: binary
+                  description: 'Must be an image. Must not be greater than 2048 kilobytes.'
+                  nullable: true
+                breed:
+                  type: string
+                  description: 'Must not be greater than 50 characters.'
+                  example: qxbajwbpilpmufinllwlo
+                  nullable: true
+                age:
+                  type: integer
+                  description: 'Must be at least 0.'
+                  example: 2
+                  nullable: true
+                weight:
+                  type: number
+                  description: 'Must be at least 0.'
+                  example: 72
+                  nullable: true
+              required:
+                - name
+                - species
+                - gender
+      security: []
+  '/api/animals/{id}':
+    get:
+      summary: ''
+      operationId: getApiAnimalsId
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: false
+                  message: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data: null
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+      tags:
+        - Endpoints
+      security: []
+    delete:
+      summary: ''
+      operationId: deleteApiAnimalsId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the animal.'
+        example: consequatur
+        required: true
+        schema:
+          type: string
+  '/api/animals/update/{id}':
+    post:
+      summary: ''
+      operationId: postApiAnimalsUpdateId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: false
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: ''
+                  example: consequatur
+                species:
+                  type: string
+                  description: ''
+                  example: consequatur
+                gender:
+                  type: string
+                  description: ''
+                  example: male
+                  enum:
+                    - male
+                    - female
+                image:
+                  type: string
+                  format: binary
+                  description: 'Must be an image. Must not be greater than 2048 kilobytes.'
+                  nullable: true
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the update.'
+        example: consequatur
+        required: true
+        schema:
+          type: string
+  /api/appointments:
+    post:
+      summary: ''
+      operationId: postApiAppointments
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                doctor_id:
+                  type: integer
+                  description: 'The <code>id</code> of an existing record in the doctors table.'
+                  example: 17
+                animal_id:
+                  type: integer
+                  description: 'The <code>id</code> of an existing record in the animals table.'
+                  example: 17
+                date_time:
+                  type: string
+                  description: 'Must be a valid date in the format <code>Y-m-d H:i</code>. Must be a date after <code>now</code>.'
+                  example: '2107-04-26'
+                type:
+                  type: string
+                  description: ''
+                  example: clinic
+                  enum:
+                    - online
+                    - clinic
+                    - home_visit
+                reason:
+                  type: string
+                  description: 'Must be at least 5 characters. Must not be greater than 255 characters.'
+                  example: mqeopfuudtdsufvyvddqa
+                location:
+                  type: string
+                  description: 'Must not be greater than 500 characters.'
+                  example: mniihfqcoynlazghdtqtq
+                  nullable: true
+                latitude:
+                  type: number
+                  description: 'Must be between -90 and 90.'
+                  example: -89
+                  nullable: true
+                longitude:
+                  type: number
+                  description: 'Must be between -180 and 180.'
+                  example: -180
+                  nullable: true
+                notes:
+                  type: string
+                  description: 'Must not be greater than 1000 characters.'
+                  example: ajwbpilpmufinllwloauy
+                  nullable: true
+              required:
+                - doctor_id
+                - animal_id
+                - date_time
+                - type
+                - reason
+      security: []
+  /api/my-appointments:
+    get:
+      summary: ''
+      operationId: getApiMyAppointments
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: false
+                  message: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data: null
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+      tags:
+        - Endpoints
+      security: []
+  '/api/appointments/{id}/cancel':
+    put:
+      summary: ''
+      operationId: putApiAppointmentsIdCancel
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the appointment.'
+        example: consequatur
+        required: true
+        schema:
+          type: string
+  '/api/appointments/{id}/reschedule':
+    put:
+      summary: ''
+      operationId: putApiAppointmentsIdReschedule
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                date_time:
+                  type: string
+                  description: 'Must be a valid date. Must be a date after <code>now</code>.'
+                  example: '2107-04-26'
+              required:
+                - date_time
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the appointment.'
+        example: consequatur
+        required: true
+        schema:
+          type: string
+  '/api/appointments/{id}/rate':
+    post:
+      summary: ''
+      operationId: postApiAppointmentsIdRate
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                rating:
+                  type: integer
+                  description: 'Must be at least 1. Must not be greater than 5.'
+                  example: 5
+                comment:
+                  type: string
+                  description: 'Must not be greater than 1000 characters.'
+                  example: mqeopfuudtdsufvyvddqa
+                  nullable: true
+              required:
+                - rating
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the appointment.'
+        example: consequatur
+        required: true
+        schema:
+          type: string
+  '/api/reviews/{id}':
+    put:
+      summary: ''
+      operationId: putApiReviewsId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                rating:
+                  type: integer
+                  description: 'Must be at least 1. Must not be greater than 5.'
+                  example: 5
+                comment:
+                  type: string
+                  description: 'Must not be greater than 1000 characters.'
+                  example: mqeopfuudtdsufvyvddqa
+                  nullable: true
+              required:
+                - rating
+      security: []
+    delete:
+      summary: ''
+      operationId: deleteApiReviewsId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the review.'
+        example: consequatur
+        required: true
+        schema:
+          type: string
+  '/api/diagnose/{animalId}':
+    post:
+      summary: 'إجراء تشخيص جديد لحيوان محدد'
+      operationId: ''
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                image:
+                  type: string
+                  format: binary
+                  description: 'Must be an image. Must not be greater than 5120 kilobytes.'
+              required:
+                - image
+      security: []
+    parameters:
+      -
+        in: path
+        name: animalId
+        description: ''
+        example: consequatur
+        required: true
+        schema:
+          type: string
+  '/api/diagnosis/{id}':
+    get:
+      summary: 'عرض تفاصيل تشخيص واحد محدد'
+      operationId: ''
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: false
+                  message: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data: null
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+      tags:
+        - Endpoints
+      security: []
+    delete:
+      summary: ''
+      operationId: deleteApiDiagnosisId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the diagnosi.'
+        example: consequatur
+        required: true
+        schema:
+          type: string
+  '/api/animals/{animalId}/diagnoses':
+    get:
+      summary: 'عرض تاريخ التشخيصات لحيوان معين (History)'
+      operationId: History
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: false
+                  message: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data: null
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: animalId
+        description: ''
+        example: consequatur
+        required: true
+        schema:
+          type: string
+  '/api/animals/{id}/prescriptions':
+    get:
+      summary: ''
+      operationId: getApiAnimalsIdPrescriptions
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: false
+                  message: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data: null
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the animal.'
+        example: consequatur
+        required: true
+        schema:
+          type: string
+  '/api/animals/{id}/medical-history':
+    get:
+      summary: ''
+      operationId: getApiAnimalsIdMedicalHistory
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: false
+                  message: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data: null
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the animal.'
+        example: consequatur
+        required: true
+        schema:
+          type: string
+  '/api/prescriptions/{id}/mark-complete':
+    put:
+      summary: ''
+      operationId: putApiPrescriptionsIdMarkComplete
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the prescription.'
+        example: consequatur
+        required: true
+        schema:
+          type: string
+  '/api/prescriptions/{id}/discontinue':
+    put:
+      summary: ''
+      operationId: putApiPrescriptionsIdDiscontinue
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the prescription.'
+        example: consequatur
+        required: true
+        schema:
+          type: string
+  /api/doctor/dashboard:
+    get:
+      summary: ''
+      operationId: getApiDoctorDashboard
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: false
+                  message: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data: null
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+      tags:
+        - Endpoints
+      security: []
+  /api/doctor/analytics:
+    get:
+      summary: ''
+      operationId: getApiDoctorAnalytics
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: false
+                  message: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data: null
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+      tags:
+        - Endpoints
+      security: []
+  /api/doctor/update-profile:
+    post:
+      summary: ''
+      operationId: postApiDoctorUpdateProfile
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: false
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                specialization:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: vmqeopfuudtdsufvyvddq
+                experience_years:
+                  type: integer
+                  description: 'Must be at least 0.'
+                  example: 1
+                bio:
+                  type: string
+                  description: ''
+                  example: consequatur
+                  nullable: true
+                image:
+                  type: string
+                  format: binary
+                  description: 'Must be an image. Must not be greater than 2048 kilobytes.'
+                  nullable: true
+                consultation_fee:
+                  type: integer
+                  description: 'Must be at least 0.'
+                  example: 45
+                  nullable: true
+                clinic_address:
+                  type: string
+                  description: 'Must not be greater than 500 characters.'
+                  example: qeopfuudtdsufvyvddqam
+                  nullable: true
+                latitude:
+                  type: number
+                  description: 'Must be between -90 and 90.'
+                  example: -89
+                  nullable: true
+                longitude:
+                  type: number
+                  description: 'Must be between -180 and 180.'
+                  example: -180
+                  nullable: true
+      security: []
+  /api/doctor/complete-profile:
+    post:
+      summary: ''
+      operationId: postApiDoctorCompleteProfile
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                specialization:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: vmqeopfuudtdsufvyvddq
+                experience_years:
+                  type: integer
+                  description: 'Must be at least 0.'
+                  example: 1
+                bio:
+                  type: string
+                  description: ''
+                  example: consequatur
+                  nullable: true
+                image:
+                  type: string
+                  format: binary
+                  description: 'Must be an image. Must not be greater than 2048 kilobytes.'
+                  nullable: true
+                consultation_fee:
+                  type: integer
+                  description: 'Must be at least 0.'
+                  example: 45
+                  nullable: true
+                clinic_address:
+                  type: string
+                  description: 'Must not be greater than 500 characters.'
+                  example: qeopfuudtdsufvyvddqam
+                  nullable: true
+                latitude:
+                  type: number
+                  description: 'Must be between -90 and 90.'
+                  example: -89
+                  nullable: true
+                longitude:
+                  type: number
+                  description: 'Must be between -180 and 180.'
+                  example: -180
+                  nullable: true
+              required:
+                - specialization
+                - experience_years
+      security: []
+  /api/doctor/reviews:
+    get:
+      summary: ''
+      operationId: getApiDoctorReviews
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: false
+                  message: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data: null
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+      tags:
+        - Endpoints
+      security: []
+  /api/doctor/verify:
+    post:
+      summary: ''
+      operationId: postApiDoctorVerify
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                license_number:
+                  type: string
+                  description: 'Must not be greater than 50 characters.'
+                  example: vmqeopfuudtdsufvyvddq
+                license_expiry:
+                  type: string
+                  description: 'Must be a valid date. Must be a date after <code>today</code>.'
+                  example: '2107-04-26'
+                license_image:
+                  type: string
+                  format: binary
+                  description: 'Must be an image. Must not be greater than 5120 kilobytes.'
+                selfie_image:
+                  type: string
+                  format: binary
+                  description: 'Must be an image. Must not be greater than 5120 kilobytes.'
+              required:
+                - license_number
+                - license_expiry
+                - license_image
+                - selfie_image
+      security: []
+  /api/doctor/availability:
+    post:
+      summary: ''
+      operationId: postApiDoctorAvailability
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                availabilities:
+                  type: array
+                  description: ''
+                  example:
+                    - []
+                  items:
+                    type: object
+                    properties:
+                      day:
+                        type: string
+                        description: ''
+                        example: Sunday
+                        enum:
+                          - Sunday
+                          - Monday
+                          - Tuesday
+                          - Wednesday
+                          - Thursday
+                          - Friday
+                          - Saturday
+                      start_time:
+                        type: string
+                        description: 'Must be a valid date in the format <code>H:i</code>.'
+                        example: '21:01'
+                      end_time:
+                        type: string
+                        description: 'Must be a valid date in the format <code>H:i</code>. Must be a date after <code>availabilities.*.start_time</code>.'
+                        example: '2107-04-26'
+                    required:
+                      - day
+                      - start_time
+                      - end_time
+              required:
+                - availabilities
+      security: []
+  /api/doctor/appointments:
+    get:
+      summary: ''
+      operationId: getApiDoctorAppointments
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: false
+                  message: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data: null
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+      tags:
+        - Endpoints
+      security: []
+  '/api/appointments/{id}/status':
+    put:
+      summary: ''
+      operationId: putApiAppointmentsIdStatus
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  description: ''
+                  example: completed
+                  enum:
+                    - confirmed
+                    - cancelled
+                    - completed
+              required:
+                - status
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the appointment.'
+        example: consequatur
+        required: true
+        schema:
+          type: string
+  '/api/appointments/{id}/prescription':
+    post:
+      summary: ''
+      operationId: postApiAppointmentsIdPrescription
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                medicine_name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: vmqeopfuudtdsufvyvddq
+                dosage:
+                  type: string
+                  description: 'Must not be greater than 100 characters.'
+                  example: amniihfqcoynlazghdtqt
+                frequency:
+                  type: string
+                  description: 'Must not be greater than 100 characters.'
+                  example: qxbajwbpilpmufinllwlo
+                duration_days:
+                  type: integer
+                  description: 'Must be at least 1.'
+                  example: 3
+                instructions:
+                  type: string
+                  description: 'Must not be greater than 1000 characters.'
+                  example: uydlsmsjuryvojcybzvrb
+                  nullable: true
+              required:
+                - medicine_name
+                - dosage
+                - frequency
+                - duration_days
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the appointment.'
+        example: consequatur
+        required: true
+        schema:
+          type: string
+  '/api/appointments/{id}/treatment-record':
+    post:
+      summary: ''
+      operationId: postApiAppointmentsIdTreatmentRecord
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                treatment_description:
+                  type: string
+                  description: ''
+                  example: consequatur
+                outcome:
+                  type: string
+                  description: ''
+                  example: improved
+                  enum:
+                    - improved
+                    - stable
+                    - worsened
+                notes:
+                  type: string
+                  description: 'Must not be greater than 1000 characters.'
+                  example: mqeopfuudtdsufvyvddqa
+                  nullable: true
+              required:
+                - treatment_description
+                - outcome
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the appointment.'
+        example: consequatur
+        required: true
+        schema:
+          type: string
+  /api/admin/doctors/pending:
+    get:
+      summary: ''
+      operationId: getApiAdminDoctorsPending
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: false
+                  message: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data: null
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'عفواً، يجب تسجيل الدخول أولاً للوصول لهذا الرابط.'
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+      tags:
+        - Endpoints
+      security: []
+  '/api/admin/doctors/{id}/approve':
+    post:
+      summary: ''
+      operationId: postApiAdminDoctorsIdApprove
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the doctor.'
+        example: 3
+        required: true
+        schema:
+          type: integer
+  '/api/admin/doctors/{id}/reject':
+    post:
+      summary: ''
+      operationId: postApiAdminDoctorsIdReject
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reason:
+                  type: string
+                  description: 'Must not be greater than 500 characters.'
+                  example: vmqeopfuudtdsufvyvddq
+              required:
+                - reason
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the doctor.'
+        example: 3
+        required: true
+        schema:
+          type: integer
+  /api/test-facebook-config:
+    get:
+      summary: ''
+      operationId: getApiTestFacebookConfig
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  client_id: '1228411616157065'
+                  client_secret: 141247b289196ac03c5abb1093270837
+                  redirect: 'https://meningeal-heterogeneously-shalanda.ngrok-free.dev/api/auth/facebook/callback'
+                properties:
+                  client_id:
+                    type: string
+                    example: '1228411616157065'
+                  client_secret:
+                    type: string
+                    example: 141247b289196ac03c5abb1093270837
+                  redirect:
+                    type: string
+                    example: 'https://meningeal-heterogeneously-shalanda.ngrok-free.dev/api/auth/facebook/callback'
+      tags:
+        - Endpoints
+      security: []
