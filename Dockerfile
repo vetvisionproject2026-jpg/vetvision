@@ -14,7 +14,7 @@ RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 # 3. تثبيت Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# 4. نسخ ملفات المشروع (دي أهم خطوة لازم تكون قبل الـ composer)
+# 4. نسخ ملفات المشروع 
 COPY . /var/www/html
 
 # 5. تثبيت مكتبات Laravel
@@ -28,5 +28,10 @@ ENV APACHE_DOCUMENT_ROOT /var/www/html/public
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
-# 8. تفعيل الـ Rewrite Module في Apache (مهم جداً لـ Laravel Routes)
+# 8. تفعيل الـ Rewrite Module وحل مشكلة الـ MPM (التعديل هنا)
 RUN a2enmod rewrite
+RUN a2dismod mpm_event || true
+RUN a2enmod mpm_prefork
+
+# 9. تشغيل الأباتشي
+CMD ["apache2-foreground"]
