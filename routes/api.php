@@ -156,9 +156,14 @@ use Illuminate\Support\Facades\Artisan;
 
 Route::get('/run-migrate', function () {
     try {
-        Artisan::call('migrate:fresh', ['--force' => true]);
-        return "<h1>Success!</h1><pre>" . Artisan::output() . "</pre>";
+        // تحديد مسار الـ PHP يدويًا أحيانًا يساعد في بيئة Railway
+        // الأمر 'migrate:fresh' سيمسح كل شيء ويبني من جديد بالترتيب الصح
+        Artisan::call('migrate:fresh', [
+            '--force' => true, // ضروري جداً لأن السيرفر يعتبر بيئة Production
+        ]);
+        
+        return "<h1>Success! Database Refreshed.</h1><pre>" . Artisan::output() . "</pre>";
     } catch (\Exception $e) {
-        return "<h1>Error:</h1><pre>" . $e->getMessage() . "</pre>";
+        return "<h1>Error during migration:</h1><pre>" . $e->getMessage() . "</pre>";
     }
 });
