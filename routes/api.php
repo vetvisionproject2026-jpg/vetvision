@@ -156,8 +156,7 @@ use Illuminate\Support\Facades\Artisan;
 
 Route::get('/run-migrate', function () {
     try {
-        // الأمر ده بيمسح كل الجداول القديمة (الفاضية) ويبنيها من جديد صح
-        Artisan::call('migrate:fresh --force');
+        Artisan::call('migrate:fresh', ['--force' => true]);
         return "<h1>Success!</h1><pre>" . Artisan::output() . "</pre>";
     } catch (\Exception $e) {
         return "<h1>Error:</h1><pre>" . $e->getMessage() . "</pre>";
