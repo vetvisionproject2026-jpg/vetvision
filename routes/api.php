@@ -152,4 +152,19 @@ Route::middleware(['auth:sanctum', 'throttle:api'])->group(function () {
 Route::get('/test-facebook-config', function () {
     return config('services.facebook');
 });
+use Illuminate\Support\Facades\Artisan;
 
+// كود مؤقت لتشغيل الـ Migration من المتصفح
+Route::get('/run-migrate', function () {
+    try {
+        // هذا الأمر يعادل php artisan migrate --force في التيرمينال
+        Artisan::call('migrate --force');
+        
+        // جلب مخرجات الأمر لعرضها لك في المتصفح
+        $output = Artisan::output();
+        
+        return "<h1>Success!</h1><pre>" . $output . "</pre>";
+    } catch (\Exception $e) {
+        return "<h1>Error:</h1><pre>" . $e->getMessage() . "</pre>";
+    }
+});
