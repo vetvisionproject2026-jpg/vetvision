@@ -154,16 +154,13 @@ Route::get('/test-facebook-config', function () {
 });
 use Illuminate\Support\Facades\Artisan;
 
-// كود مؤقت لتشغيل الـ Migration من المتصفح
 Route::get('/run-migrate', function () {
     try {
-        // هذا الأمر يعادل php artisan migrate --force في التيرمينال
-        Artisan::call('migrate --force');
+        // الأمر ده بيمسح كل حاجة ويبني من جديد بالترتيب الصح
+        Artisan::call('migrate:fresh --force');
         
-        // جلب مخرجات الأمر لعرضها لك في المتصفح
         $output = Artisan::output();
-        
-        return "<h1>Success!</h1><pre>" . $output . "</pre>";
+        return "<h1>Success! Tables Created From Scratch:</h1><pre>" . $output . "</pre>";
     } catch (\Exception $e) {
         return "<h1>Error:</h1><pre>" . $e->getMessage() . "</pre>";
     }
