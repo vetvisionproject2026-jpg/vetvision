@@ -8,6 +8,7 @@
     "require": {
         "php": "^8.2",
         "darkaonline/l5-swagger": "^11.0",
+        "doctrine/dbal": "^4.4",
         "knuckleswtf/scribe": "^5.9",
         "laravel/framework": "^12.0",
         "laravel/sanctum": "^4.0",
