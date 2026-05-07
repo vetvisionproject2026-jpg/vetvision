@@ -19,7 +19,4 @@ RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-av
 
 RUN composer install --no-dev --optimize-autoloader
 
-RUN printf "#!/bin/bash\nexec apache2-foreground" > /usr/local/bin/start-app.sh \
-    && chmod +x /usr/local/bin/start-app.sh
-
-CMD ["/usr/local/bin/start-app.sh"]
+CMD ["apache2-foreground"]
