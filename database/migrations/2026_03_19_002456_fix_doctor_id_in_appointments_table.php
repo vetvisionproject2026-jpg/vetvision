@@ -12,11 +12,12 @@ return new class extends Migration
     public function up()
     {
         Schema::table('appointments', function (Blueprint $table) {
-            // Remove old foreign key to users table
-            $table->dropForeign(['doctor_id']); 
 
-            // Link it to the new doctors table
-            $table->foreign('doctor_id')->references('id')->on('doctors')->onDelete('cascade');
+            // $table->dropForeign(['doctor_id']);
+
+            // مؤقتاً نشيل السطر ده
+            // $table->foreign('doctor_id')->references('id')->on('doctors')->onDelete('cascade');
+
         });
     }
 
@@ -26,8 +27,9 @@ return new class extends Migration
     public function down()
     {
         Schema::table('appointments', function (Blueprint $table) {
-            $table->dropForeign(['doctor_id']);
-            $table->foreign('doctor_id')->references('id')->on('users')->onDelete('cascade');
+
+            // $table->dropForeign(['doctor_id']);
+
         });
     }
-}; // Removed the extra closing braces and fixed the semi-colon placement
+};
